@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferienhaus Küstenfein</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-bg {
+            position: relative;
+            width: 100vw;  /* Vollbreite des Viewports */
+            height: 80vh; /* Reduzierte Höhe auf 80% */
+            left: 50%;     /* Zentrieren */
+            right: 50%;    /* Zentrieren */
+            margin-left: -50vw;  /* Ausgleich für Zentrierung */
+            margin-right: -50vw; /* Ausgleich für Zentrierung */
+            overflow: hidden;    /* Verhindert Scrollbars */
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;  /* Deckt den gesamten Bereich ab */
+            background-position: center;  /* Zentriert das Bild */
+            opacity: 0;
+            transition: opacity 2.5s ease-in-out;
+        }
+
+        .hero-bg-image.active {
+            opacity: 1;
+        }
+
+        .gallery-container {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item {
+            flex: 0 0 calc(33.333% - 20px);
+            margin-right: 20px;
+            max-width: 300px;
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .gallery-nav-prev { left: 0; }
+        .gallery-nav-next { right: 0; }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-blue-600">Küstenfein</div>
+    <div class="space-x-6">
+        <a href="#home" class="text-gray-800 hover:text-blue-600">Home</a>
+        <a href="#details" class="text-gray-800 hover:text-blue-600">Details</a>
+        <a href="#gallery" class="text-gray-800 hover:text-blue-600">Galerie</a>
+        <a href="#pricing" class="text-gray-800 hover:text-blue-600">Preise</a>
+    </div>
+</div>
+
+<!-- Header with Sliding Background -->
+<header class="hero-bg relative flex items-center justify-center text-white text-center">
+    <div class="hero-bg-image" style="background-image: url('images/main.jpg')"></div>
+    <div class="hero-bg-image" style="background-image: url('images/main2.jpg')"></div>
+    <div class="hero-bg-image" style="background-image: url('images/main3.jpg')"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <h1 class="text-5xl font-bold mb-4">Ferienhaus Küstenfein</h1>
+        <p class="text-xl mb-8">Ihr Traumurlaub in Carolinensiel</p>
+        <a href="#pricing" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition">Jetzt Buchen</a>
+    </div>
+</header>
+
+<!-- Details Section -->
+<div id="details" class="section container mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-4">Wohnfläche</h3>
+            <p>101 m² modern eingerichtet</p>
+        </div>
+        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-4">Schlafzimmer</h3>
+            <p>3 gemütliche Schlafzimmer</p>
+        </div>
+        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-semibold mb-4">Kapazität</h3>
+            <p>6 Personen komfortabel</p>
+        </div>
+    </div>
+</div>
+
+<!-- Gallery Section -->
+<div id="gallery" class="section container mx-auto px-4 py-16 bg-gray-100 relative">
+    <h2 class="text-3xl font-bold text-center mb-12">Unsere Galerie</h2>
+
+    <div class="gallery-nav gallery-nav-prev" onclick="moveGallery(-1)">&#10094;</div>
+    <div class="gallery-nav gallery-nav-next" onclick="moveGallery(1)">&#10095;</div>
+
+    <div class="gallery-container">
+        <div class="gallery-wrapper">
+            <div class="gallery-item rounded-lg overflow-hidden">
+                <img src="images/zimmer/wohnzimmer1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 4">
+            </div>
+            <div class="gallery-item rounded-lg overflow-hidden">
+                <img src="images/zimmer/kueche1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 4">
+            </div>
+            <div class="gallery-item rounded-lg overflow-hidden">
+                <img src="images/zimmer/eltern1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 3">
+            </div>
+            <div class="gallery-item rounded-lg overflow-hidden">
+                <img src="images/zimmer/kind1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 1">
+            </div>
+            <div class="gallery-item rounded-lg overflow-hidden">
+                <img src="images/zimmer/kind2.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 2">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Pricing Section -->
+<div id="pricing" class="section container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Preise & Buchung</h2>
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <div class="flex justify-between mb-6">
+            <span class="text-xl font-semibold">Übernachtungspreis</span>
+            <span class="text-2xl font-bold text-blue-600">89€ - 169€</span>
+        </div>
+        <div class="border-t pt-4">
+            <h3 class="font-semibold mb-4">Zusatzleistungen</h3>
+            <ul>
+                <li>Wäschepaket 18,99€ pro Gast</li>
+                <li>Wäschepaket inkl. Beziehen 20,99€ pro Gast</li>
+            </ul>
+        </div>
+        <div class="mt-8 text-center">
+            <a href="tel:04971912667" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition">Jetzt Kontakt aufnehmen</a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="container mx-auto px-4 text-center py-8">
+    <div class="mb-6">
+        <h3 class="text-2xl font-bold mb-4">Ferienhaus Küstenfein</h3>
+        <p>Rudek Vermietungs-Service</p>
+        <p>Tel.: 04971 912667</p>
+    </div>
+    <div class="space-x-4 mb-4">
+        <a href="#" class="hover:text-blue-400">Impressum</a>
+        <a href="#" class="hover:text-blue-400">Datenschutz</a>
+        <a href="#" class="hover:text-blue-400">AGB</a>
+    </div>
+    <p>© 2024 Hermann Geers. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+    // Header Background Slider
+    const headerImages = document.querySelectorAll('.hero-bg-image');
+    let headerCurrentIndex = 0;
+
+    function changeHeaderBackground() {
+        headerImages[headerCurrentIndex].classList.remove('active');
+        headerCurrentIndex = (headerCurrentIndex + 1) % headerImages.length;
+        headerImages[headerCurrentIndex].classList.add('active');
+    }
+
+    headerImages[0].classList.add('active');
+    setInterval(changeHeaderBackground, 6000);
+
+    // Gallery Navigation
+    let currentSlide = 0;
+    const galleryWrapper = document.querySelector('.gallery-wrapper');
+    const items = document.querySelectorAll('.gallery-item');
+    const itemWidth = items[0].offsetWidth + 20;
+    const maxSlides = Math.ceil(items.length / 3) - 1;
+
+    function moveGallery(direction) {
+        currentSlide = Math.max(0, Math.min(maxSlides, currentSlide + direction));
+        galleryWrapper.style.transform = `translateX(-${currentSlide * 3 * itemWidth}px)`;
+    }
+</script>
+</body>
+</html>
