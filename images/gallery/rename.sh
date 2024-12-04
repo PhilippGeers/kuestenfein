@@ -10,8 +10,9 @@ idx=1
 for file in "$folder_path"/*; do
     # Prüfen, ob die Datei existiert, keine Verzeichnisse sind und nicht mit .sh endet
     if [ -f "$file" ] && [[ ! "$file" =~ \.sh$ ]]; then
-        # Erweiterung der Datei ermitteln
+        # Erweiterung der Datei ermitteln und in Kleinbuchstaben konvertieren
         extension="${file##*.}"
+        extension=$(echo "$extension" | tr '[:upper:]' '[:lower:]')  # Konvertiere die Erweiterung in lowercase
         
         # Neues Dateiformat bild_{idx} (z.B. bild_1.jpg)
         new_file="$folder_path/bild_$idx.$extension"  # Neuen Namen mit der ursprünglichen Erweiterung generieren
