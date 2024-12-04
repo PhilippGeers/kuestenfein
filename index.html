@@ -8,13 +8,13 @@
     <style>
         .hero-bg {
             position: relative;
-            width: 100vw;  /* Vollbreite des Viewports */
-            height: 80vh; /* Reduzierte Höhe auf 80% */
-            left: 50%;     /* Zentrieren */
-            right: 50%;    /* Zentrieren */
-            margin-left: -50vw;  /* Ausgleich für Zentrierung */
-            margin-right: -50vw; /* Ausgleich für Zentrierung */
-            overflow: hidden;    /* Verhindert Scrollbars */
+            width: 100vw;
+            height: 80vh;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
         }
 
         .hero-bg-image {
@@ -23,8 +23,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;  /* Deckt den gesamten Bereich ab */
-            background-position: center;  /* Zentriert das Bild */
+            background-size: cover;
+            background-position: center;
             opacity: 0;
             transition: opacity 2.5s ease-in-out;
         }
@@ -49,6 +49,7 @@
             flex: 0 0 calc(33.333% - 20px);
             margin-right: 20px;
             max-width: 300px;
+            cursor: pointer;
         }
         .gallery-nav {
             position: absolute;
@@ -62,6 +63,42 @@
         }
         .gallery-nav-prev { left: 0; }
         .gallery-nav-next { right: 0; }
+
+        /* Modal Styles */
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        #modalContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+
+        #modalImage {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        #closeModal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -117,22 +154,29 @@
     <div class="gallery-container">
         <div class="gallery-wrapper">
             <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/zimmer/wohnzimmer1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 4">
+                <img src="images/zimmer/wohnzimmer1.jpg" class="w-full h-64 object-cover gallery-image" alt="Ferienhaus Bild 4">
             </div>
             <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/zimmer/kueche1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 4">
+                <img src="images/zimmer/kueche1.jpg" class="w-full h-64 object-cover gallery-image" alt="Ferienhaus Bild 4">
             </div>
             <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/zimmer/eltern1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 3">
+                <img src="images/zimmer/eltern1.jpg" class="w-full h-64 object-cover gallery-image" alt="Ferienhaus Bild 3">
             </div>
             <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/zimmer/kind1.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 1">
+                <img src="images/zimmer/kind1.jpg" class="w-full h-64 object-cover gallery-image" alt="Ferienhaus Bild 1">
             </div>
             <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/zimmer/kind2.jpg" class="w-full h-64 object-cover" alt="Ferienhaus Bild 2">
+                <img src="images/zimmer/kind2.jpg" class="w-full h-64 object-cover gallery-image" alt="Ferienhaus Bild 2">
             </div>
-
         </div>
+    </div>
+</div>
+
+<!-- Modal für Bilder -->
+<div id="imageModal">
+    <span id="closeModal">&times;</span>
+    <div id="modalContent">
+        <img id="modalImage" src="" alt="Großansicht">
     </div>
 </div>
 
@@ -197,6 +241,47 @@
         currentSlide = Math.max(0, Math.min(maxSlides, currentSlide + direction));
         galleryWrapper.style.transform = `translateX(-${currentSlide * 3 * itemWidth}px)`;
     }
+
+    // Modal Logik
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+
+    // Funktion zum Schließen des Modals
+    function closeImageModal() {
+        modal.style.display = 'none';
+    }
+
+    galleryImages.forEach(image => {
+        image.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImage.src = image.src;
+        });
+    });
+
+    // Modal schließen bei Klick außerhalb des Bildes oder auf X
+    modalContent.addEventListener('click', (event) => {
+        if (event.target === modalContent) {
+            closeImageModal();
+        }
+    });
+
+    closeModal.addEventListener('click', closeImageModal);
+
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeImageModal();
+        }
+    });
+
+    // Zusätzlich Escape-Taste zum Schließen
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeImageModal();
+        }
+    });
 </script>
 </body>
 </html>
