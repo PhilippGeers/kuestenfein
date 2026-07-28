@@ -37,11 +37,12 @@
             </span>
         </a>
 
-        <div class="hidden lg:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-6">
             <a href="#moin" class="nav-link">Moin</a>
             <a href="#haus" class="nav-link">Das Haus</a>
             <a href="#ausstattung" class="nav-link">Ausstattung</a>
             <a href="#galerie" class="nav-link">Galerie</a>
+            <a href="#events" class="nav-link">Events</a>
             <a href="#umgebung" class="nav-link">Umgebung</a>
             <a href="#preise" class="nav-link">Preise</a>
             <a href="#kontakt" class="btn btn-primary !px-6 !py-2.5 text-sm">Anfragen</a>
@@ -60,6 +61,7 @@
             <a href="#haus" class="nav-link py-2.5">Das Haus</a>
             <a href="#ausstattung" class="nav-link py-2.5">Ausstattung</a>
             <a href="#galerie" class="nav-link py-2.5">Galerie</a>
+            <a href="#events" class="nav-link py-2.5">Events</a>
             <a href="#umgebung" class="nav-link py-2.5">Umgebung</a>
             <a href="#preise" class="nav-link py-2.5">Preise</a>
             <a href="#kontakt" class="btn btn-primary mt-3">Anfragen</a>
@@ -356,6 +358,86 @@
 
         <div class="mt-10 text-center">
             <button id="galleryToggle" class="btn btn-sand">Alle Fotos anzeigen</button>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== Veranstaltungen ====================== -->
+<section id="events" class="bg-sand-light">
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
+        <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow mb-4">Veranstaltungen</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Was im Jahr so ansteht</h2>
+            <p class="mt-5 text-lg text-slate-600">
+                Carolinensiel feiert gern – und meistens am Hafen. Diese Termine lohnen
+                sich, wenn Sie Ihren Aufenthalt danach planen möchten.
+            </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+            <article class="card p-7">
+                <p class="text-sm font-bold tracking-[0.18em] uppercase text-petrol-light">Juli</p>
+                <ul class="mt-4 space-y-3">
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Schützenfest</span>
+                        <span class="text-sm text-slate-500">Esens</span>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="card p-7">
+                <p class="text-sm font-bold tracking-[0.18em] uppercase text-petrol-light">August</p>
+                <ul class="mt-4 space-y-3">
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Hafenfest</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Hafen in Flammen</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Watt’n Sail</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Straßenfest</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="card p-7">
+                <p class="text-sm font-bold tracking-[0.18em] uppercase text-petrol-light">Oktober</p>
+                <ul class="mt-4 space-y-3">
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Hafenfest</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="card p-7">
+                <p class="text-sm font-bold tracking-[0.18em] uppercase text-petrol-light">Dezember</p>
+                <ul class="mt-4 space-y-3">
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Wintermarkt</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                    <li>
+                        <span class="block font-semibold text-petrol-dark">Silvester mit Lasershow</span>
+                        <span class="text-sm text-slate-500">Carolinensiel</span>
+                    </li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="mt-10 text-center reveal">
+            <p class="text-sm text-slate-500">
+                Die genauen Termine wechseln von Jahr zu Jahr.
+            </p>
+            <a href="https://www.carolinensiel.de/veranstaltungen" target="_blank" rel="noopener"
+               class="btn btn-primary mt-5">Zum Veranstaltungskalender</a>
         </div>
     </div>
 </section>
@@ -843,7 +925,7 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     /* --- Aktiver Nav-Punkt --- */
-    const sections = ['moin', 'haus', 'ausstattung', 'galerie', 'umgebung', 'preise', 'kontakt']
+    const sections = ['moin', 'haus', 'ausstattung', 'galerie', 'events', 'umgebung', 'preise', 'kontakt']
         .map(id => document.getElementById(id))
         .filter(Boolean);
 
