@@ -3,304 +3,826 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferienhaus Küstenfein</title>
+    <title>Ferienhaus Küstenfein – Urlaub in Carolinensiel an der Nordsee</title>
+    <meta name="description" content="Modernes Ferienhaus in Carolinensiel: 101 m², 3 Schlafzimmer, 2 Bäder, große überdachte Terrasse. Für bis zu 6 Personen, 300 m zum Ortskern.">
+    <link rel="icon" href="images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        petrol: { DEFAULT: '#0d6971', dark: '#094a50', light: '#2a8f96' },
+                        sand: { DEFAULT: '#d9b88f', light: '#ede0cd' },
+                        cream: '#faf7f2',
+                        ink: '#1c2b2e'
+                    },
+                    maxWidth: { content: '76rem' }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<!-- Navigation -->
-<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="flex items-center">
-        <img src="images/logo.png" class="h-12 mr-2">
-        <span class="text-2xl section-title font-bold text-primary">Ferienhaus Küstenfein</span>
+<body class="antialiased">
 
-    </div>
-    <div class="space-x-6 ">
-        <a href="#home" class="section-title font-bold hover:text-primary">Home</a>
-        <a href="#details" class="section-title font-bold  hover:text-primary">Details</a>
-        <a href="#gallery" class="section-title font-bold  hover:text-primary">Galerie</a>
-        <a href="#pricing" class="section-title font-bold  hover:text-primary">Preise</a>
-    </div>
-</div>
-<!-- Header with Sliding Background -->
-<header class="hero-bg relative flex items-center justify-center text-white text-center">
-    <div class="hero-bg-image" style="background-image: url('images/main.jpg')"></div>
-    <div class="hero-bg-image" style="background-image: url('images/main2.jpg')"></div>
-    <div class="hero-bg-image" style="background-image: url('images/main3.jpg')"></div>
+<!-- ====================== Navigation ====================== -->
+<nav id="siteNav" class="site-nav fixed top-0 inset-x-0 z-50">
+    <div class="max-w-content mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-3">
+            <img src="images/logo.png" alt="Logo Ferienhaus Küstenfein" class="h-11 w-11 rounded-full">
+            <span class="leading-tight">
+                <span class="block text-lg font-bold text-petrol-dark">Küstenfein</span>
+                <span class="block text-[0.68rem] tracking-[0.2em] uppercase text-petrol-light">Carolinensiel</span>
+            </span>
+        </a>
 
-    <div class="container mx-auto px-4 relative z-10">
-        <h1 class="text-5xl font-bold mb-4">Ferienhaus Küstenfein</h1>
-        <p class="text-xl mb-8">Ihr Traumurlaub in Carolinensiel</p>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="#moin" class="nav-link">Moin</a>
+            <a href="#haus" class="nav-link">Das Haus</a>
+            <a href="#ausstattung" class="nav-link">Ausstattung</a>
+            <a href="#galerie" class="nav-link">Galerie</a>
+            <a href="#umgebung" class="nav-link">Umgebung</a>
+            <a href="#preise" class="nav-link">Preise</a>
+            <a href="#kontakt" class="btn btn-primary !px-6 !py-2.5 text-sm">Anfragen</a>
+        </div>
+
+        <button id="menuToggle" class="lg:hidden p-2 -mr-2 text-petrol-dark" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M3 6h18M3 12h18M3 18h18"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden border-t border-petrol/10 bg-white">
+        <div class="px-5 py-4 flex flex-col gap-1">
+            <a href="#moin" class="nav-link py-2.5">Moin</a>
+            <a href="#haus" class="nav-link py-2.5">Das Haus</a>
+            <a href="#ausstattung" class="nav-link py-2.5">Ausstattung</a>
+            <a href="#galerie" class="nav-link py-2.5">Galerie</a>
+            <a href="#umgebung" class="nav-link py-2.5">Umgebung</a>
+            <a href="#preise" class="nav-link py-2.5">Preise</a>
+            <a href="#kontakt" class="btn btn-primary mt-3">Anfragen</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====================== Hero ====================== -->
+<header id="top" class="hero">
+    <div class="hero-slide" style="background-image:url('images/main.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/main2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/main3.jpg')"></div>
+    <div class="hero-veil"></div>
+
+    <div class="relative z-10 h-full max-w-content mx-auto px-5 lg:px-8 flex flex-col justify-center items-center text-center text-white">
+        <p class="eyebrow !text-sand mb-5">Nordsee · Ostfriesland</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold max-w-3xl leading-[1.1]">
+            Ferienhaus Küstenfein
+        </h1>
+        <p class="mt-5 text-lg sm:text-xl text-white/90 max-w-xl">
+            101 m² für bis zu sechs Menschen – mitten in Carolinensiel,
+            zehn Radminuten vom Strand.
+        </p>
+        <div class="mt-9 flex flex-col sm:flex-row gap-3">
+            <a href="#kontakt" class="btn btn-sand">Termin anfragen</a>
+            <a href="#galerie" class="btn btn-ghost">Fotos ansehen</a>
+        </div>
+
+        <div class="hero-dots absolute bottom-24 sm:bottom-16 left-1/2 -translate-x-1/2 flex gap-2" role="tablist" aria-label="Bildwechsel"></div>
+    </div>
+
+    <div class="absolute bottom-0 inset-x-0 z-10 leading-none">
+        <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+            <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+        </svg>
     </div>
 </header>
 
-<!-- Details Section -->
-<div id="details" class="section container mx-auto px-4 py-16">
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Wohnfläche</h3>
-            <p>101 m² modern eingerichtet</p>
-        </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Schlafzimmer</h3>
-            <p>3 gemütliche Schlafzimmer</p>
-        </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Kapazität</h3>
-            <p>6 Personen komfortabel</p>
+<!-- ====================== Moin / Willkommen ====================== -->
+<section id="moin" class="py-20 lg:py-28">
+    <div class="max-w-content mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="reveal">
+                <p class="eyebrow mb-4">Moin und herzlich willkommen</p>
+                <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark leading-tight">
+                    Ankommen, durchatmen,<br class="hidden sm:block"> Küste genießen.
+                </h2>
+                <p class="mt-6 text-lg text-slate-600 leading-relaxed">
+                    Unser Ferienhaus steht in einer ruhigen Neubaureihe in Carolinensiel –
+                    nah genug am Ortskern, um alles zu Fuß zu erreichen, und weit genug weg
+                    vom Trubel, um abends auf der Terrasse wirklich Ruhe zu haben.
+                </p>
+                <p class="mt-4 text-lg text-slate-600 leading-relaxed">
+                    Drinnen erwartet Sie ein offener Wohn- und Essbereich mit Küche, drei
+                    Schlafzimmer und zwei moderne Bäder. Draußen eine überdachte Terrasse,
+                    an der auch bei ostfriesischem Wetter gegrillt und gespielt wird.
+                </p>
+
+                <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                    <div>
+                        <p class="text-3xl font-bold text-petrol">101<span class="text-lg"> m²</span></p>
+                        <p class="text-sm text-slate-500 mt-1">Wohnfläche</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-petrol">6</p>
+                        <p class="text-sm text-slate-500 mt-1">Personen</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-petrol">3</p>
+                        <p class="text-sm text-slate-500 mt-1">Schlafzimmer</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-petrol">2</p>
+                        <p class="text-sm text-slate-500 mt-1">Bäder</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal grid grid-cols-2 gap-4">
+                <div class="room-figure col-span-2">
+                    <img src="images/zimmer/wohnzimmer1.jpg" alt="Offener Wohnbereich mit Blick auf die überdachte Terrasse" loading="lazy" class="w-full h-64 sm:h-80 object-cover">
+                </div>
+                <div class="room-figure">
+                    <img src="images/main3.jpg" alt="Überdachte Terrasse mit großem Esstisch" loading="lazy" class="w-full h-44 sm:h-56 object-cover">
+                </div>
+                <div class="room-figure">
+                    <img src="images/zimmer/kueche1.jpg" alt="Offene Küche" loading="lazy" class="w-full h-44 sm:h-56 object-cover">
+                </div>
+            </div>
         </div>
     </div>
-    <div class="grid md:grid-cols-3 gap-8 mt-10">
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Wohn-/Esszimmer</h3>
-            <p>Großzügig und offen gestaltet, ideal für gesellige Abende. Kinoerlebnis mit Fernseher 82 Zoll.</p>
-        </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Bäder</h3>
-            <p>2 moderne Bäder mit Dusche</p>
-        </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Küche</h3>
-            <p>Offen gestaltet, perfekt für gemeinsame Kochabende</p>
-        </div>
-    </div>
+</section>
 
-    <div class="grid md:grid-cols-3 gap-8 mt-10">
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Lage</h3>
-            <p>Zentrumsnah, 300m zu Ortskern! Zum Strand 10 Minuten mit dem Fahrrad.</p>
+<!-- ====================== Das Haus ====================== -->
+<section id="haus" class="bg-cream">
+    <svg class="wave wave-flip" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+    </svg>
+
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
+        <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow mb-4">Das Haus</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Räume, die zusammenpassen</h2>
+            <p class="mt-5 text-lg text-slate-600">
+                Auf zwei Etagen verteilt sich alles, was ein Familien- oder Freundesurlaub braucht.
+            </p>
         </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Terrasse</h3>
-            <p>großzügig überdachte Terrasse, 6,50m x 3,60m</p>
-        </div>
-        <div class="property-card bg-white p-6 rounded-lg shadow-md text-center">
-            <h3 class="text-xl font-semibold mb-4">Fahrrad u. Abstellraum</h3>
-            <p>Abschließbarer seperater Abstellraum mit der Möglichkeit E-Bikes aufzuladen</p>
-        </div>
-    </div>
-</div>
 
+        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+            <article class="card overflow-hidden">
+                <img src="images/zimmer/wohnzimmer1.jpg" alt="Wohn- und Essbereich" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Wohn- &amp; Essbereich</h3>
+                    <p class="mt-2 text-slate-600">
+                        Großzügig und offen gestaltet, ideal für gesellige Abende – inklusive
+                        Kinoerlebnis auf 82 Zoll.
+                    </p>
+                </div>
+            </article>
 
-<!-- Gallery Section -->
-<div id="gallery" class="section container mx-auto px-4 py-16 bg-gray-100 relative">
-    <h2 class="text-3xl section-title font-bold text-center mb-12">Unsere Galerie</h2>
+            <article class="card overflow-hidden">
+                <img src="images/zimmer/kueche1.jpg" alt="Offene Küche" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Küche</h3>
+                    <p class="mt-2 text-slate-600">
+                        Offen zum Wohnraum, voll ausgestattet – perfekt für gemeinsame Kochabende,
+                        ohne dass jemand allein am Herd steht.
+                    </p>
+                </div>
+            </article>
 
-    <div class="gallery-nav gallery-nav-prev" onclick="moveGallery(-1)">&#10094;</div>
-    <div class="gallery-nav gallery-nav-next" onclick="moveGallery(1)">&#10095;</div>
+            <article class="card overflow-hidden">
+                <img src="images/zimmer/eltern1.jpg" alt="Elternschlafzimmer" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Elternschlafzimmer</h3>
+                    <p class="mt-2 text-slate-600">
+                        Ruhiges Schlafzimmer mit Doppelbett – Rückzugsort nach einem langen Tag
+                        an der frischen Luft.
+                    </p>
+                </div>
+            </article>
 
-    <div class="gallery-container">
-        <div class="gallery-wrapper">
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild%202.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 3.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 4.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 5.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 6.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-<!--            <div class="gallery-item rounded-lg overflow-hidden">-->
-<!--                <img src="images/gallery/Bild 7.JPG" class="w-full h-64 object-cover gallery-image" alt="">-->
-<!--            </div>-->
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 8.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 9.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 10.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-<!--            <div class="gallery-item rounded-lg overflow-hidden">-->
-<!--                <img src="images/gallery/Bild 11.jpg" class="w-full h-64 object-cover gallery-image" alt="">-->
-<!--            </div>-->
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 12.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 13.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 14.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 14(1).jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 15.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 16.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 17.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 18.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 19.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 20.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 21.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 22.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 23.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 24.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 25.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 26.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 27.JPG" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 28.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 29.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 30.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
-            <div class="gallery-item rounded-lg overflow-hidden">
-                <img src="images/gallery/Bild 31.jpg" class="w-full h-64 object-cover gallery-image" alt="">
-            </div>
+            <article class="card overflow-hidden">
+                <img src="images/zimmer/kind1.jpg" alt="Kinderzimmer" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Zwei weitere Schlafzimmer</h3>
+                    <p class="mt-2 text-slate-600">
+                        Platz für Kinder, Freunde oder Großeltern. Insgesamt schlafen bis zu
+                        sechs Personen komfortabel.
+                    </p>
+                </div>
+            </article>
 
+            <article class="card overflow-hidden">
+                <img src="images/main3.jpg" alt="Überdachte Terrasse" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Überdachte Terrasse</h3>
+                    <p class="mt-2 text-slate-600">
+                        6,50 m × 3,60 m unter Glasdach, mit großem Esstisch. Draußen sitzen
+                        auch dann, wenn die Nordsee anderer Meinung ist.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card overflow-hidden">
+                <img src="images/main.jpg" alt="Außenansicht des Ferienhauses" loading="lazy" class="w-full h-52 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-petrol-dark">Abstellraum für Räder</h3>
+                    <p class="mt-2 text-slate-600">
+                        Abschließbarer separater Abstellraum mit Lademöglichkeit für E-Bikes –
+                        direkt am Haus.
+                    </p>
+                </div>
+            </article>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Modal für Bilder -->
-<div id="imageModal">
-    <span id="closeModal">&times;</span>
-    <div id="modalContent">
-        <img id="modalImage" src="" alt="Großansicht">
-    </div>
-</div>
-
-<!-- Pricing Section -->
-<div id="pricing" class="section container mx-auto px-4 py-16">
-    <h2 class="text-3xl section-title font-bold text-primary text-center mb-12">Preise & Buchung</h2>
-
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <div class="flex justify-between mb-6">
-            <span class="text-xl font-semibold">Übernachtungspreis</span>
-            <span class="text-2xl section-title font-bold text-primary">89€ - 169€</span>
+<!-- ====================== Ausstattung ====================== -->
+<section id="ausstattung" class="py-20 lg:py-28">
+    <div class="max-w-content mx-auto px-5 lg:px-8">
+        <div class="max-w-2xl reveal">
+            <p class="eyebrow mb-4">Ausstattung im Detail</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Alles da, worüber man sonst nachdenkt</h2>
         </div>
-        <div class="border-t pt-4">
-            <h3 class="font-semibold mb-4">Zusatzleistungen</h3>
-            <ul>
-                <li>Wäschepaket 18,99€ pro Gast</li>
-                <li>Wäschepaket inkl. Beziehen 20,99€ pro Gast</li>
-            </ul>
-        </div>
-        <div class="mt-8 text-center">
-            <a href="https://www.traumhaft-carolinensiel.de/" target="_self" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition">Jetzt Kontakt aufnehmen</a>
-        </div>
-    </div>
-</div>
 
+        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+            <div>
+                <span class="icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h6v18H4z"/><path d="M14 3h6v9h-6z"/><path d="M14 16h6v5h-6z"/><path d="M7 7v3"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Küche</h3>
+                <ul class="mt-3 space-y-2 text-slate-600">
+                    <li>Backofen &amp; Ceranfeld</li>
+                    <li>Spülmaschine</li>
+                    <li>Kühl-/Gefrierkombination</li>
+                    <li>Kaffeemaschine &amp; Wasserkocher</li>
+                    <li>Toaster, Mikrowelle</li>
+                    <li>Geschirr für sechs Personen</li>
+                </ul>
+            </div>
 
-<!-- Footer -->
-<footer class="container mx-auto px-4 text-center py-8">
-    <div class="mb-6">
-        <h3 class="text-2xl font-bold mb-4">Ferienhaus Küstenfein</h3>
-        <p>Rudek Vermietungs-Service</p>
-        <p>Tel.: 04971 912667</p>
+            <div>
+                <span class="icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Wohnen &amp; Medien</h3>
+                <ul class="mt-3 space-y-2 text-slate-600">
+                    <li>82-Zoll-Fernseher</li>
+                    <li>WLAN im ganzen Haus</li>
+                    <li>Große Couchlandschaft</li>
+                    <li>Esstisch für sechs Personen</li>
+                    <li>Fußbodenheizung</li>
+                </ul>
+            </div>
+
+            <div>
+                <span class="icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M6 12V6a2 2 0 0 1 2-2h1"/><path d="M9 4v3"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Schlafen &amp; Bad</h3>
+                <ul class="mt-3 space-y-2 text-slate-600">
+                    <li>3 Schlafzimmer</li>
+                    <li>2 moderne Bäder mit Dusche</li>
+                    <li>Waschmaschine</li>
+                    <li>Handtücher &amp; Bettwäsche zubuchbar</li>
+                    <li>Haartrockner</li>
+                </ul>
+            </div>
+
+            <div>
+                <span class="icon-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 17.5 12 6h-2"/><path d="M6 17.5 12 6"/><path d="M14 6h3"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Draußen &amp; Extras</h3>
+                <ul class="mt-3 space-y-2 text-slate-600">
+                    <li>Überdachte Terrasse 6,50 × 3,60 m</li>
+                    <li>Gartenmöbel &amp; Grill</li>
+                    <li>Abschließbarer Fahrradraum</li>
+                    <li>Ladepunkt für E-Bikes</li>
+                    <li>Eigener Stellplatz</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="space-x-4 mb-4">
-        <a href="impressum.html" class="hover:text-blue-400">Impressum</a>
-<!--        <a href="#" class="hover:text-blue-400">Datenschutz</a>-->
-<!--        <a href="#" class="hover:text-blue-400">AGB</a>-->
+</section>
+
+<!-- ====================== Galerie ====================== -->
+<section id="galerie" class="bg-petrol-dark text-white">
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 reveal">
+            <div>
+                <p class="eyebrow !text-sand mb-4">Galerie</p>
+                <h2 class="text-3xl lg:text-4xl font-bold">Ein Rundgang in Bildern</h2>
+            </div>
+            <p class="text-white/70 max-w-sm">
+                Klicken Sie ein Foto an, um es groß zu sehen – mit den Pfeiltasten
+                blättern Sie durch die Galerie.
+            </p>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid mt-12">
+            <div class="gallery-tile"><img src="images/gallery/Bild%202.jpg" alt="Ferienhaus Küstenfein, Foto 1" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%203.jpg" alt="Ferienhaus Küstenfein, Foto 2" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%204.jpg" alt="Ferienhaus Küstenfein, Foto 3" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%205.JPG" alt="Ferienhaus Küstenfein, Foto 4" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%206.JPG" alt="Ferienhaus Küstenfein, Foto 5" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%208.jpg" alt="Ferienhaus Küstenfein, Foto 6" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%209.jpg" alt="Ferienhaus Küstenfein, Foto 7" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2010.jpg" alt="Ferienhaus Küstenfein, Foto 8" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2011.JPG" alt="Ferienhaus Küstenfein, Foto 9" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2012.jpg" alt="Ferienhaus Küstenfein, Foto 10" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2013.jpg" alt="Ferienhaus Küstenfein, Foto 11" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2014.jpg" alt="Ferienhaus Küstenfein, Foto 12" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2014(1).jpg" alt="Ferienhaus Küstenfein, Foto 13" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2015.jpg" alt="Ferienhaus Küstenfein, Foto 14" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2016.jpg" alt="Ferienhaus Küstenfein, Foto 15" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2017.jpg" alt="Ferienhaus Küstenfein, Foto 16" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2018.jpg" alt="Ferienhaus Küstenfein, Foto 17" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2019.jpg" alt="Ferienhaus Küstenfein, Foto 18" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2020.jpg" alt="Ferienhaus Küstenfein, Foto 19" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2021.jpg" alt="Ferienhaus Küstenfein, Foto 20" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2022.jpg" alt="Ferienhaus Küstenfein, Foto 21" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2023.JPG" alt="Ferienhaus Küstenfein, Foto 22" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2024.JPG" alt="Ferienhaus Küstenfein, Foto 23" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2025.JPG" alt="Ferienhaus Küstenfein, Foto 24" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2026.JPG" alt="Ferienhaus Küstenfein, Foto 25" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2027.JPG" alt="Ferienhaus Küstenfein, Foto 26" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2028.jpg" alt="Ferienhaus Küstenfein, Foto 27" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2029.jpg" alt="Ferienhaus Küstenfein, Foto 28" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2030.jpg" alt="Ferienhaus Küstenfein, Foto 29" loading="lazy"></div>
+            <div class="gallery-tile"><img src="images/gallery/Bild%2031.jpg" alt="Ferienhaus Küstenfein, Foto 30" loading="lazy"></div>
+        </div>
+
+        <div class="mt-10 text-center">
+            <button id="galleryToggle" class="btn btn-sand">Alle Fotos anzeigen</button>
+        </div>
     </div>
-    <p>© 2024 Hermann Geers. Alle Rechte vorbehalten.</p>
+</section>
+
+<!-- ====================== Umgebung ====================== -->
+<section id="umgebung" class="py-20 lg:py-28">
+    <div class="max-w-content mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow mb-4">Umgebung</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Was direkt vor der Tür liegt</h2>
+            <p class="mt-5 text-lg text-slate-600">
+                Carolinensiel-Harlesiel verbindet historischen Sielhafen, Wattenmeer und
+                Nordseestrand – vieles davon erreichen Sie zu Fuß oder mit dem Rad.
+            </p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Ortskern</h3>
+                <p class="mt-2 text-slate-600">
+                    Rund 300 Meter bis zu Bäcker, Supermarkt und Restaurants – der
+                    Brötchengang am Morgen ist wirklich nur ein Spaziergang.
+                </p>
+            </article>
+
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c1.5 1.5 3 1.5 4.5 0S10.5 15.5 12 17s3 1.5 4.5 0S19.5 15.5 21 17"/><path d="M4 14V7l8-4 8 4v7"/><path d="M12 3v11"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Museumshafen</h3>
+                <p class="mt-2 text-slate-600">
+                    Historische Segler am alten Sielhafen, das Deutsche Sielhafenmuseum
+                    und im Sommer Hafenfeste direkt am Wasser.
+                </p>
+            </article>
+
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M3 18c2-2 4-2 6 0"/><path d="M15 18c2-2 4-2 6 0"/><path d="M9 21c2-2 4-2 6 0"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Nordseestrand Harlesiel</h3>
+                <p class="mt-2 text-slate-600">
+                    Sandstrand mit Strandkörben und flachem Einstieg – etwa zehn Minuten
+                    mit dem Fahrrad über den Deichweg.
+                </p>
+            </article>
+
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20 6 9h12l2 11"/><path d="M12 9V4"/><path d="M9 4h6"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Fähre nach Wangerooge</h3>
+                <p class="mt-2 text-slate-600">
+                    Ab Harlesiel setzen Sie auf die autofreie Insel über – ein perfekter
+                    Tagesausflug bei jedem Wetter.
+                </p>
+            </article>
+
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 17.5 12 6h-2"/><path d="M6 17.5 12 6"/><path d="M14 6h3"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Radwege &amp; Deich</h3>
+                <p class="mt-2 text-slate-600">
+                    Flaches Land, endlose Routen: Von der Haustür geht es direkt in das
+                    ostfriesische Radwegenetz und auf den Deich.
+                </p>
+            </article>
+
+            <article class="card p-7">
+                <span class="icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M2 19c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M7 11V5l6 3-6 3z"/></svg>
+                </span>
+                <h3 class="mt-5 text-lg font-bold text-petrol-dark">Wattwandern</h3>
+                <p class="mt-2 text-slate-600">
+                    Das Weltnaturerbe Wattenmeer beginnt hinter dem Deich – geführte
+                    Wattwanderungen starten in der Saison regelmäßig.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== Preise ====================== -->
+<section id="preise" class="bg-cream">
+    <svg class="wave wave-flip" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+    </svg>
+
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
+        <div class="text-center max-w-2xl mx-auto reveal">
+            <p class="eyebrow mb-4">Preise</p>
+            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Saison- &amp; Preisübersicht</h2>
+            <p class="mt-5 text-lg text-slate-600">
+                Alle Preise gelten pro Nacht für das gesamte Haus. Wählen Sie Ihre
+                Personenzahl – die Tabelle passt sich an.
+            </p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-3 gap-6 items-start reveal">
+            <!-- Saisontabelle -->
+            <div class="lg:col-span-2 card overflow-hidden">
+                <div class="flex flex-wrap items-center gap-3 px-6 pt-6">
+                    <span class="text-sm font-semibold text-slate-500">Personen</span>
+                    <div class="guest-switch" role="group" aria-label="Personenzahl wählen">
+                        <button type="button" data-guests="2">2</button>
+                        <button type="button" data-guests="3">3</button>
+                        <button type="button" data-guests="4" class="is-active" aria-pressed="true">4</button>
+                        <button type="button" data-guests="5">5</button>
+                        <button type="button" data-guests="6">6</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto mt-5">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>Zeitraum</th>
+                                <th>Saison</th>
+                                <th class="text-right">Pro Nacht</th>
+                            </tr>
+                        </thead>
+                        <tbody id="priceRows">
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">02.01. – 13.03.2027</td>
+                                <td class="text-slate-600">Winter – Zwischenzeit</td>
+                                <td class="price text-right" data-prices="99,105,111,117,123">111 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">13.03. – 19.03.2027</td>
+                                <td class="text-slate-600">vor Ostern</td>
+                                <td class="price text-right" data-prices="99,105,111,117,123">111 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">19.03. – 04.04.2027<sup class="text-petrol-light font-bold" title="Mindestbuchung 7 Nächte">*</sup></td>
+                                <td class="text-slate-600">Osterferien</td>
+                                <td class="price text-right" data-prices="135,141,147,153,159">147 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">04.04. – 09.05.2027</td>
+                                <td class="text-slate-600">Frühling</td>
+                                <td class="price text-right" data-prices="119,125,131,137,143">131 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">09.05. – 27.05.2027</td>
+                                <td class="text-slate-600">Himmelfahrt / Pfingsten / Fronleichnam</td>
+                                <td class="price text-right" data-prices="129,135,141,147,153">141 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">27.05. – 05.09.2027<sup class="text-petrol-light font-bold" title="Mindestbuchung 10 Nächte">**</sup></td>
+                                <td class="text-slate-600">Sommerferien</td>
+                                <td class="price text-right" data-prices="180,186,192,198,204">192 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">05.09. – 03.10.2027<sup class="text-petrol-light font-bold" title="Mindestbuchung 7 Nächte">*</sup></td>
+                                <td class="text-slate-600">Spätsommer</td>
+                                <td class="price text-right" data-prices="129,135,141,147,153">141 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">03.10. – 07.11.2027<sup class="text-petrol-light font-bold" title="Mindestbuchung 7 Nächte">*</sup></td>
+                                <td class="text-slate-600">Herbstferien</td>
+                                <td class="price text-right" data-prices="129,135,141,147,153">141 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">07.11. – 26.11.2027</td>
+                                <td class="text-slate-600">Herbst</td>
+                                <td class="price text-right" data-prices="99,105,111,117,123">111 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">26.11. – 30.11.2027</td>
+                                <td class="text-slate-600">1. Advent</td>
+                                <td class="price text-right" data-prices="119,125,131,137,143">131 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">30.11. – 19.12.2027</td>
+                                <td class="text-slate-600">Vorweihnachtszeit</td>
+                                <td class="price text-right" data-prices="99,105,111,117,123">111 €</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-petrol-dark whitespace-nowrap">19.12.2027 – 02.01.2028<sup class="text-petrol-light font-bold" title="Mindestbuchung 10 Nächte">**</sup></td>
+                                <td class="text-slate-600">Weihnachtsferien</td>
+                                <td class="price text-right" data-prices="145,151,157,163,169">157 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="px-6 pb-6 pt-4 space-y-1.5 text-sm text-slate-500">
+                    <p>Mindestbuchung 5 Nächte, sofern nicht anders angegeben.</p>
+                    <p><span class="text-petrol-light font-bold">*</span> ab 7 Nächte &nbsp;·&nbsp;
+                       <span class="text-petrol-light font-bold">**</span> ab 10 Nächte</p>
+                </div>
+            </div>
+
+            <!-- Nebenkosten -->
+            <div class="card p-7">
+                <h3 class="text-lg font-bold text-petrol-dark">Nebenkosten</h3>
+                <div class="mt-5 flex justify-between gap-4">
+                    <span class="text-slate-600">Reinigung &amp; Wäschepaket</span>
+                    <span class="price">130 €</span>
+                </div>
+                <p class="mt-2 text-sm text-slate-500">Einmalige Pauschale pro Aufenthalt.</p>
+
+                <div class="mt-6 pt-6 border-t border-petrol/10">
+                    <p class="text-slate-600">
+                        Jede weitere Person über zwei Gäste hinaus kostet 6 € pro Nacht.
+                        Sie haben einen Wunschzeitraum? Wir prüfen die Verfügbarkeit gern
+                        für Sie.
+                    </p>
+                </div>
+
+                <a href="#kontakt" class="btn btn-primary w-full mt-7">Verfügbarkeit anfragen</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== Kontakt ====================== -->
+<section id="kontakt" class="bg-petrol text-white">
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <p class="eyebrow !text-sand mb-4">Buchung &amp; Kontakt</p>
+            <h2 class="text-3xl lg:text-4xl font-bold">Wann möchten Sie kommen?</h2>
+            <p class="mt-5 text-lg text-white/85">
+                Am schnellsten geht es telefonisch – wir sagen Ihnen direkt, ob Ihr
+                Wunschzeitraum noch frei ist.
+            </p>
+
+            <div class="mt-10 grid sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                <a href="tel:+494971912667" class="card !bg-white/10 !border-white/20 p-6 text-left hover:!bg-white/[0.16]">
+                    <span class="text-sm uppercase tracking-[0.16em] text-sand">Telefon</span>
+                    <span class="block mt-2 text-xl font-bold">04971 912667</span>
+                    <span class="block mt-1 text-sm text-white/70">Rudek Vermietungs-Service</span>
+                </a>
+                <a href="mailto:immo-geers@web.de?subject=Anfrage%20Ferienhaus%20K%C3%BCstenfein" class="card !bg-white/10 !border-white/20 p-6 text-left hover:!bg-white/[0.16]">
+                    <span class="text-sm uppercase tracking-[0.16em] text-sand">E-Mail</span>
+                    <span class="block mt-2 text-xl font-bold break-all">immo-geers@web.de</span>
+                    <span class="block mt-1 text-sm text-white/70">Antwort meist am selben Tag</span>
+                </a>
+            </div>
+
+            <p class="mt-8 text-white/70">
+                Oder schauen Sie direkt bei
+                <a href="https://www.traumhaft-carolinensiel.de/" class="underline underline-offset-4 hover:text-sand">traumhaft-carolinensiel.de</a>
+                vorbei.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ====================== Footer ====================== -->
+<footer class="bg-petrol-dark text-white/80">
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-14">
+        <div class="grid sm:grid-cols-3 gap-10">
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="images/logo.png" alt="" class="h-10 w-10 rounded-full">
+                    <span class="text-lg font-bold text-white">Küstenfein</span>
+                </div>
+                <p class="mt-4 text-sm leading-relaxed">
+                    Ferienhaus in Carolinensiel,<br>Ostfriesland – Nordseeküste.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-sm uppercase tracking-[0.16em] text-sand">Kontakt</h3>
+                <ul class="mt-4 space-y-2 text-sm">
+                    <li>Rudek Vermietungs-Service</li>
+                    <li><a href="tel:+494971912667" class="hover:text-white">04971 912667</a></li>
+                    <li><a href="mailto:immo-geers@web.de" class="hover:text-white">immo-geers@web.de</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-sm uppercase tracking-[0.16em] text-sand">Seite</h3>
+                <ul class="mt-4 space-y-2 text-sm">
+                    <li><a href="#haus" class="hover:text-white">Das Haus</a></li>
+                    <li><a href="#preise" class="hover:text-white">Preise</a></li>
+                    <li><a href="impressum.html" class="hover:text-white">Impressum &amp; Datenschutz</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-white/10 text-sm">
+            © <span id="year">2026</span> Hermann Geers. Alle Rechte vorbehalten.
+        </div>
+    </div>
 </footer>
 
+<!-- ====================== Lightbox ====================== -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <button class="lightbox-btn lightbox-close" aria-label="Schließen">&times;</button>
+    <button class="lightbox-btn lightbox-prev" aria-label="Vorheriges Bild">&#10094;</button>
+    <img id="lightboxImage" src="" alt="">
+    <button class="lightbox-btn lightbox-next" aria-label="Nächstes Bild">&#10095;</button>
+    <p class="lightbox-counter"><span id="lightboxIndex">1</span> / <span id="lightboxTotal">1</span></p>
+</div>
+
 <script>
-    // Header Background Slider
-    const headerImages = document.querySelectorAll('.hero-bg-image');
-    let headerCurrentIndex = 0;
+(function () {
+    'use strict';
 
-    function changeHeaderBackground() {
-        headerImages[headerCurrentIndex].classList.remove('active');
-        headerCurrentIndex = (headerCurrentIndex + 1) % headerImages.length;
-        headerImages[headerCurrentIndex].classList.add('active');
-    }
+    /* --- Jahr im Footer --- */
+    document.getElementById('year').textContent = String(new Date().getFullYear());
 
-    headerImages[0].classList.add('active');
-    setInterval(changeHeaderBackground, 6000);
+    /* --- Nav: Schatten beim Scrollen + mobiles Menü --- */
+    const nav = document.getElementById('siteNav');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    // Gallery Navigation
-    let currentSlide = 0;
-    const galleryWrapper = document.querySelector('.gallery-wrapper');
-    const items = document.querySelectorAll('.gallery-item');
-    const itemWidth = items[0].offsetWidth + 20;
-    const maxSlides = Math.ceil(items.length / 3) - 1;
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-    function moveGallery(direction) {
-        currentSlide = Math.max(0, Math.min(maxSlides, currentSlide + direction));
-        galleryWrapper.style.transform = `translateX(-${currentSlide * 3 * itemWidth}px)`;
-    }
-
-    // Modal Logik
-    const galleryImages = document.querySelectorAll('.gallery-image');
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const modalContent = document.getElementById('modalContent');
-    const closeModal = document.getElementById('closeModal');
-
-    // Funktion zum Schließen des Modals
-    function closeImageModal() {
-        modal.style.display = 'none';
-    }
-
-    galleryImages.forEach(image => {
-        image.addEventListener('click', () => {
-            modal.style.display = 'block';
-            modalImage.src = image.src;
+    menuToggle.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
-    // Modal schließen bei Klick außerhalb des Bildes oder auf X
-    modalContent.addEventListener('click', (event) => {
-        if (event.target === modalContent) {
-            closeImageModal();
-        }
+    /* --- Hero-Slider --- */
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const dotBar = document.querySelector('.hero-dots');
+    let slideIndex = 0;
+    let slideTimer;
+
+    const dots = slides.map((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Bild ${i + 1} anzeigen`);
+        dot.addEventListener('click', () => { showSlide(i); restartTimer(); });
+        dotBar.appendChild(dot);
+        return dot;
     });
 
-    closeModal.addEventListener('click', closeImageModal);
+    function showSlide(i) {
+        slideIndex = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => s.classList.toggle('is-active', n === slideIndex));
+        dots.forEach((d, n) => d.classList.toggle('is-active', n === slideIndex));
+    }
 
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            closeImageModal();
-        }
+    function restartTimer() {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(() => showSlide(slideIndex + 1), 7000);
+    }
+
+    showSlide(0);
+    restartTimer();
+
+    /* --- Galerie: erst 12 Bilder, Rest auf Knopfdruck --- */
+    const VISIBLE = 12;
+    const tiles = Array.from(document.querySelectorAll('.gallery-tile'));
+    const galleryToggle = document.getElementById('galleryToggle');
+
+    function collapseGallery() {
+        tiles.forEach((tile, i) => tile.classList.toggle('is-hidden', i >= VISIBLE));
+        galleryToggle.textContent = `Alle ${tiles.length} Fotos anzeigen`;
+    }
+
+    if (tiles.length > VISIBLE) {
+        collapseGallery();
+        galleryToggle.addEventListener('click', () => {
+            const expanded = tiles.some(tile => tile.classList.contains('is-hidden'));
+            if (expanded) {
+                tiles.forEach(tile => tile.classList.remove('is-hidden'));
+                galleryToggle.textContent = 'Weniger anzeigen';
+            } else {
+                collapseGallery();
+                document.getElementById('galerie').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    } else {
+        galleryToggle.remove();
+    }
+
+    /* --- Lightbox --- */
+    const images = tiles.map(tile => tile.querySelector('img'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxIndex = document.getElementById('lightboxIndex');
+    document.getElementById('lightboxTotal').textContent = String(images.length);
+    let current = 0;
+
+    function openLightbox(i) {
+        current = (i + images.length) % images.length;
+        lightboxImage.src = images[current].src;
+        lightboxImage.alt = images[current].alt;
+        lightboxIndex.textContent = String(current + 1);
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    images.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', () => openLightbox(current - 1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click', () => openLightbox(current + 1));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') openLightbox(current - 1);
+        if (e.key === 'ArrowRight') openLightbox(current + 1);
     });
 
-    // Zusätzlich Escape-Taste zum Schließen
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-            closeImageModal();
-        }
+    /* --- Preistabelle: Umschalter für die Personenzahl --- */
+    const guestButtons = Array.from(document.querySelectorAll('.guest-switch button'));
+    const priceCells = Array.from(document.querySelectorAll('#priceRows .price'));
+
+    function showPrices(guests) {
+        const column = guests - 2;
+        priceCells.forEach(cell => {
+            const prices = cell.dataset.prices.split(',');
+            cell.textContent = prices[column] + ' €';
+        });
+        guestButtons.forEach(button => {
+            const active = Number(button.dataset.guests) === guests;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+    }
+
+    guestButtons.forEach(button => {
+        button.addEventListener('click', () => showPrices(Number(button.dataset.guests)));
     });
+
+    if (guestButtons.length) showPrices(4);
+
+    /* --- Einblenden beim Scrollen --- */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* --- Aktiver Nav-Punkt --- */
+    const sections = ['moin', 'haus', 'ausstattung', 'galerie', 'umgebung', 'preise', 'kontakt']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('is-active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(section => navObserver.observe(section));
+})();
 </script>
 </body>
 </html>

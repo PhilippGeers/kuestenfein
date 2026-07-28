@@ -3,82 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum - Ferienhaus Küstenfein</title>
+    <title>Impressum &amp; Datenschutz – Ferienhaus Küstenfein</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Reusing some styles from the main page to maintain consistency */
-        .hero-bg {
-            position: relative;
-            width: 100vw;
-            height: 40vh;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            overflow: hidden;
-            background-image: url('images/main.jpg');
-            background-size: cover;
-            background-position: center;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        petrol: { DEFAULT: '#0d6971', dark: '#094a50', light: '#2a8f96' },
+                        sand: { DEFAULT: '#d9b88f', light: '#ede0cd' },
+                        cream: '#faf7f2',
+                        ink: '#1c2b2e'
+                    },
+                    maxWidth: { content: '76rem' }
+                }
+            }
         }
-    </style>
+    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<!-- Navigation -->
-<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="text-2xl font-bold text-blue-600">Küstenfein</div>
-    <div class="space-x-6">
-        <a href="index.html#home" class="text-gray-800 hover:text-blue-600">Home</a>
-        <a href="index.html#details" class="text-gray-800 hover:text-blue-600">Details</a>
-        <a href="index.html#gallery" class="text-gray-800 hover:text-blue-600">Galerie</a>
-        <a href="index.html#pricing" class="text-gray-800 hover:text-blue-600">Preise</a>
+<body class="antialiased bg-cream">
+
+<!-- ====================== Navigation ====================== -->
+<nav id="siteNav" class="site-nav is-scrolled fixed top-0 inset-x-0 z-50">
+    <div class="max-w-content mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="images/logo.png" alt="Logo Ferienhaus Küstenfein" class="h-11 w-11 rounded-full">
+            <span class="leading-tight">
+                <span class="block text-lg font-bold text-petrol-dark">Küstenfein</span>
+                <span class="block text-[0.68rem] tracking-[0.2em] uppercase text-petrol-light">Carolinensiel</span>
+            </span>
+        </a>
+        <a href="index.html" class="nav-link">&larr; Zur Startseite</a>
     </div>
-</div>
+</nav>
 
-<!-- Header -->
-<header class="hero-bg relative flex items-center justify-center text-white text-center">
-    <div class="container mx-auto px-4 relative z-10">
-        <h1 class="text-5xl font-bold mb-4">Impressum</h1>
+<!-- ====================== Inhalt ====================== -->
+<main class="max-w-3xl mx-auto px-5 lg:px-8 pt-36 pb-20">
+    <p class="eyebrow mb-4">Rechtliches</p>
+    <h1 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Impressum &amp; Datenschutz</h1>
+
+    <div class="card p-8 sm:p-10 mt-10 space-y-10">
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Angaben gemäß § 5 TMG</h2>
+            <div class="mt-4 text-slate-600 leading-relaxed">
+                <p>Hermann Geers</p>
+                <p>Schwefinger Str. 64</p>
+                <p>49716 Meppen</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Kontakt</h2>
+            <div class="mt-4 text-slate-600 leading-relaxed">
+                <p>Telefon: <a href="tel:+4959314967777" class="text-petrol hover:underline">05931 4967777</a></p>
+                <p>E-Mail: <a href="mailto:immo-geers@web.de" class="text-petrol hover:underline">immo-geers@web.de</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Vermietung</h2>
+            <div class="mt-4 text-slate-600 leading-relaxed">
+                <p>Rudek Vermietungs-Service</p>
+                <p>Telefon: <a href="tel:+494971912667" class="text-petrol hover:underline">04971 912667</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Haftungsausschluss</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+                Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für
+                die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind
+                ausschließlich deren Betreiber verantwortlich.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Datenschutzerklärung</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+                Diese Website ist eine statische Website und sammelt, speichert oder
+                verarbeitet keine persönlichen Daten. Es werden keine Cookies gesetzt und
+                keine Analyse- oder Tracking-Dienste eingesetzt. Ein Kontaktformular gibt
+                es nicht – die Kontaktaufnahme erfolgt ausschließlich per Telefon oder
+                E-Mail.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-petrol-dark">Einbindung Dritter</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+                Diese Website wird auf GitHub Pages gehostet. Beim Aufruf der Seite
+                verarbeitet GitHub technisch notwendige Verbindungsdaten wie Ihre
+                IP-Adresse. Zusätzlich wird das CSS-Framework Tailwind über das CDN
+                <span class="whitespace-nowrap">cdn.tailwindcss.com</span> geladen; dabei
+                wird Ihre IP-Adresse an den Anbieter übermittelt.
+            </p>
+        </section>
     </div>
-</header>
+</main>
 
-<!-- Impressum Content -->
-<div class="container mx-auto px-4 py-16 max-w-2xl">
-    <div class="bg-white p-8 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-6">Angaben gemäß § 5 TMG</h2>
-
-        <div class="mb-6">
-            <h3 class="font-semibold text-xl mb-2">Anbieter</h3>
-            <p>Hermann Geers</p>
-            <p>Schwefinger Str. 64 </p>
-            <p>49716 Meppen</p>
-        </div>
-
-        <div class="mb-6">
-            <h3 class="font-semibold text-xl mb-2">Kontakt</h3>
-            <p>Telefon: 05931 4967777</p>
-            <p>E-Mail: immo-geers@web.de</p>
-        </div>
-<p/>
-        <div>
-            <h3 class="font-semibold text-xl mb-2">Haftungsausschluss</h3>
-            <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-        </div>
-        <p/>
-        <div>
-            <h3 class="font-semibold text-xl mb-2">Datenschutzerklärung</h3>
-            <p>Diese Website ist eine statische Website und sammelt, speichert oder verarbeitet keine persönlichen Daten. Die Nutzung dieser Website erfordert keine Speicherung von Cookies auf Ihrem Gerät.</p>
-        </div>
-        <p/>
-        <div>
-            <h3 class="font-semibold text-xl mb-2">Einbindung Dritter</h3>
-            <p>Diese Website wird auf GitHub Pages gehostet. GitHub erfüllt die Anforderungen des Privacy Shield Frameworks, wie in den globalen Datenschutzpraktiken von GitHub beschrieben.</p>
-        </div>
+<!-- ====================== Footer ====================== -->
+<footer class="bg-petrol-dark text-white/80">
+    <div class="max-w-content mx-auto px-5 lg:px-8 py-10 text-sm flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+        <p>© <span id="year">2026</span> Hermann Geers. Alle Rechte vorbehalten.</p>
+        <a href="index.html" class="hover:text-white">Zur Startseite</a>
     </div>
-</div>
-
-<!-- Footer -->
-<footer class="container mx-auto px-4 text-center py-8">
-    <p>© 2024 Hermann Geers. Alle Rechte vorbehalten.</p>
 </footer>
+
+<script>
+    document.getElementById('year').textContent = String(new Date().getFullYear());
+</script>
 </body>
 </html>
