@@ -10,6 +10,16 @@
 #
 # Umgekehrt kannst du in den Portalen https://xn--kstenfein-q9a.de/belegung.ics
 # als Import-URL hinterlegen, damit sie die Belegung der anderen kennen.
+#
+# Eigene Sperrzeiten (Eigennutzung, Renovierung) traegst du in
+# data/sperrzeiten.json ein - direkt auf github.com im Browser editierbar.
+# "to" ist der Abreisetag und bleibt selbst frei:
+#
+#   [
+#     { "from": "2027-01-02", "to": "2027-01-09", "notiz": "Eigennutzung" }
+#   ]
+#
+# Jede Aenderung an der Datei startet diesen Workflow automatisch.
 
 name: Belegung synchronisieren
 
@@ -17,6 +27,9 @@ on:
   schedule:
     - cron: '17 */3 * * *'   # alle drei Stunden
   workflow_dispatch:
+  push:
+    paths:
+      - 'data/sperrzeiten.json'   # eigene Sperrzeiten sofort übernehmen
 
 permissions:
   contents: write

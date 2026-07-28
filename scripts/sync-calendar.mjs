@@ -16,11 +16,12 @@
  * GitHub-Secret, nicht ins Repository.
  */
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 
 const OUT_JSON = 'data/belegung.json';
 const OUT_ICS = 'belegung.ics';
+const MANUAL = 'data/sperrzeiten.json';
 
 /* ------------------------------------------------------------------ Datum */
 
@@ -129,13 +130,31 @@ const sources = (process.env.ICAL_URLS || '')
             : { name: new URL(line).hostname, url: line };
     });
 
-if (!sources.length) {
-    console.error('Keine Feeds in ICAL_URLS gefunden – nichts zu tun.');
-    process.exit(1);
-}
-
 const events = [];
 let failed = 0;
+
+/* Von Hand gepflegte Sperrzeiten aus data/sperrzeiten.json übernehmen. */
+if (existsSync(MANUAL)) {
+    try {
+        const entries = JSON.parse(readFileSync(MANUAL, 'utf8'));
+        for (const entry of entries) {
+            if (!entry || !entry.from || !entry.to || entry.to <= entry.from) {
+                console.error(`  Sperrzeiten: Eintrag übersprungen – ${JSON.stringify(entry)}`);
+                continue;
+            }
+            events.push({ from: entry.from, to: entry.to, source: 'manuell', summary: entry.notiz || '' });
+        }
+        console.log(`  Sperrzeiten (von Hand): ${entries.length} Einträge`);
+    } catch (error) {
+        console.error(`  ${MANUAL} ist fehlerhaft – ${error.message}`);
+        process.exit(1);
+    }
+}
+
+if (!sources.length && !events.length) {
+    console.error('Weder Feeds in ICAL_URLS noch Sperrzeiten gefunden – nichts zu tun.');
+    process.exit(1);
+}
 
 for (const source of sources) {
     try {
@@ -155,7 +174,7 @@ for (const source of sources) {
 }
 
 // Lieber den alten Stand behalten, als eine leere Belegung zu veröffentlichen.
-if (failed === sources.length) {
+if (sources.length && failed === sources.length) {
     console.error('Alle Feeds fehlgeschlagen – bestehende Daten bleiben unverändert.');
     process.exit(1);
 }
@@ -166,7 +185,7 @@ const future = ranges.filter(range => range.to > today);
 
 write(OUT_JSON, JSON.stringify({
     updated: new Date().toISOString(),
-    sources: sources.map(source => source.name),
+    sources: [...sources.map(source => source.name), ...(existsSync(MANUAL) ? ['manuell'] : [])],
     // "to" ist der Abreisetag und damit selbst wieder frei.
     ranges: future
 }, null, 2) + '\n');
