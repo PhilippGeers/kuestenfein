@@ -1,0 +1,53 @@
+# Holt die Belegung aus den iCal-Feeds der Buchungsportale und schreibt sie ins Repo.
+#
+# Einrichtung:
+#   1. In Booking.com (Extranet > Kalender > Kalender synchronisieren) die
+#      Export-URL kopieren.
+#   2. Im Repo unter Settings > Secrets and variables > Actions ein Secret
+#      namens ICAL_URLS anlegen, eine Feed-URL pro Zeile, optional mit Namen:
+#        Booking.com|https://admin.booking.com/hotel/ical/....ics
+#   3. Unter Actions den Workflow einmal manuell starten (Run workflow).
+#
+# Umgekehrt kannst du in den Portalen https://xn--kstenfein-q9a.de/belegung.ics
+# als Import-URL hinterlegen, damit sie die Belegung der anderen kennen.
+
+name: Belegung synchronisieren
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'   # alle drei Stunden
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-calendar
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Feeds abrufen
+        env:
+          ICAL_URLS: ${{ secrets.ICAL_URLS }}
+        run: node scripts/sync-calendar.mjs
+
+      - name: Änderungen committen
+        run: |
+          if git diff --quiet -- data/belegung.json belegung.ics; then
+            echo "Keine Änderungen an der Belegung."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/belegung.json belegung.ics
+          git commit -m "Belegung aktualisiert"
+          git push

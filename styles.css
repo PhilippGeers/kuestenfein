@@ -412,6 +412,79 @@ h1, h2, h3, .display {
     color: #fff;
 }
 
+/* --- Belegungskalender --------------------------------------------------- */
+
+.cal-month.is-hidden {
+    display: none;
+}
+
+.cal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--petrol-dark);
+    text-align: center;
+    margin-bottom: 0.9rem;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+.cal-weekday {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding-bottom: 0.35rem;
+}
+
+.cal-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.cal-day.is-free {
+    background: var(--sand-light);
+    color: var(--petrol-dark);
+}
+
+.cal-day.is-booked {
+    background: var(--petrol);
+    color: #fff;
+    font-weight: 600;
+}
+
+.cal-day.is-past {
+    background: transparent;
+    color: rgba(92, 111, 114, 0.35);
+}
+
+.cal-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--muted);
+}
+
+.cal-swatch {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+}
+
+.cal-swatch.is-free { background: var(--sand-light); }
+.cal-swatch.is-booked { background: var(--petrol); }
+.cal-swatch.is-past { background: rgba(92, 111, 114, 0.15); }
+
 /* --- Einblenden beim Scrollen -------------------------------------------- */
 
 .reveal {
