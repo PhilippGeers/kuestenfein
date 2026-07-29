@@ -701,8 +701,8 @@
             <p class="eyebrow mb-4">Verfügbarkeit</p>
             <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Wann ist noch frei?</h2>
             <p class="mt-5 text-lg text-slate-600">
-                Der Kalender zeigt die bereits vergebenen Nächte. Er wird mehrmals
-                täglich mit unseren Buchungsportalen abgeglichen.
+                Der Kalender zeigt die bereits vergebenen Nächte. Wir halten ihn
+                laufend aktuell.
             </p>
 
             <div class="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
@@ -1005,18 +1005,36 @@
     async function buildCalendar() {
         if (!calendar) return;
 
-        let data;
+        /** Beide Quellen lesen; eine fehlende Datei ist kein Fehler. */
+        async function load(path) {
+            const response = await fetch(path, { cache: 'no-cache' });
+            return response.ok ? response.json() : null;
+        }
+
+        let belegung = null;
+        let sperrzeiten = null;
         try {
-            const response = await fetch('data/belegung.json', { cache: 'no-cache' });
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            data = await response.json();
+            [belegung, sperrzeiten] = await Promise.all([
+                load('data/belegung.json').catch(() => null),
+                load('data/sperrzeiten.json').catch(() => null)
+            ]);
         } catch (error) {
+            belegung = null;
+        }
+
+        if (!belegung && !sperrzeiten) {
             calendarStatus.textContent =
                 'Der Belegungsplan lässt sich gerade nicht laden. Rufen Sie uns gern an.';
             return;
         }
 
-        const booked = bookedNights(data.ranges || []);
+        const data = belegung || { updated: null, ranges: [] };
+        const ranges = [
+            ...(data.ranges || []),
+            ...(Array.isArray(sperrzeiten) ? sperrzeiten : [])
+        ].filter(range => range && range.from && range.to && range.to > range.from);
+
+        const booked = bookedNights(ranges);
         const today = isoDate(new Date());
         const start = new Date();
         const months = [];

@@ -6,14 +6,18 @@
  *   data/belegung.json   – von der Seite gelesen, rendert den Kalender
  *   belegung.ics         – Sammel-Feed, den andere Portale importieren können
  *
- * Die Feed-URLs kommen aus der Umgebungsvariable ICAL_URLS, eine pro Zeile
- * (Kommas gehen auch). Optional mit vorangestelltem Namen:
+ * Dieses Skript wird von Hand ausgeführt, wenn die Belegung der Portale
+ * übernommen werden soll:
  *
- *   Booking.com|https://admin.booking.com/hotel/ical/....ics
- *   https://www.airbnb.de/calendar/ical/....ics
+ *   ICAL_URLS="Booking.com|https://admin.booking.com/hotel/ical/....ics" \
+ *     node scripts/sync-calendar.mjs
  *
- * Die URLs enthalten Zugriffstokens und gehören deshalb in ein
- * GitHub-Secret, nicht ins Repository.
+ * Mehrere Feeds durch Zeilenumbruch oder Komma trennen. Die URLs enthalten
+ * Zugriffstokens – nicht ins Repository schreiben, nur als Umgebungsvariable
+ * übergeben.
+ *
+ * Für die reine Handpflege braucht es dieses Skript nicht: Die Website liest
+ * data/sperrzeiten.json direkt.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
