@@ -1,17 +1,22 @@
 /* ==========================================================================
    Ferienhaus Küstenfein – Basis-Styles
-   Farbwelt aus dem Logo: Petrol, Sand, Creme
+   Gedeckte Farbwelt aus dem Logo: Petrol, Sand, Creme - ohne reines Weiss
    ========================================================================== */
 
 :root {
-    --petrol: #0d6971;
-    --petrol-dark: #094a50;
-    --petrol-light: #2a8f96;
-    --sand: #d9b88f;
-    --sand-light: #ede0cd;
-    --cream: #faf7f2;
-    --ink: #1c2b2e;
-    --muted: #5c6f72;
+    /* Gedeckte, warme Palette – kein reines Weiß */
+    --base: #e9e2d6;        /* Grundfläche der Seite */
+    --band: #ded5c5;        /* abgesetzte Sektionen */
+    --surface: #f2ece1;     /* Karten */
+    --petrol: #2f6265;
+    --petrol-dark: #21474a;
+    --petrol-light: #4e8386;
+    --sand: #c7a67b;
+    --sand-light: #d8cbb4;
+    --cream: #ded5c5;
+    --ink: #2a3432;
+    --muted: #5f6d6a;
+    --off-white: #f4efe6;
 }
 
 * {
@@ -23,7 +28,7 @@ html {
 }
 
 body {
-    background: #fff;
+    background: var(--base);
     color: var(--ink);
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
@@ -37,15 +42,15 @@ h1, h2, h3, .display {
 /* --- Navigation ---------------------------------------------------------- */
 
 .site-nav {
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(233, 226, 214, 0.92);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid transparent;
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .site-nav.is-scrolled {
-    border-color: rgba(13, 105, 113, 0.12);
-    box-shadow: 0 6px 24px -12px rgba(9, 74, 80, 0.35);
+    border-color: rgba(47, 98, 101, 0.12);
+    box-shadow: 0 6px 24px -12px rgba(33, 71, 74, 0.35);
 }
 
 .nav-link {
@@ -127,13 +132,13 @@ h1, h2, h3, .display {
     width: 8px;
     height: 8px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(244, 239, 230, 0.45);
     transition: background 0.3s ease, width 0.3s ease;
 }
 
 .hero-dots button.is-active {
     width: 26px;
-    background: #fff;
+    background: var(--off-white);
 }
 
 /* --- Wellen-Trenner ------------------------------------------------------ */
@@ -169,8 +174,8 @@ h1, h2, h3, .display {
 
 .btn-primary {
     background: var(--petrol);
-    color: #fff;
-    box-shadow: 0 10px 24px -12px rgba(9, 74, 80, 0.8);
+    color: var(--off-white);
+    box-shadow: 0 10px 24px -12px rgba(33, 71, 74, 0.8);
 }
 
 .btn-primary:hover {
@@ -183,16 +188,16 @@ h1, h2, h3, .display {
 }
 
 .btn-sand:hover {
-    background: #c9a476;
+    background: #b8946a;
 }
 
 .btn-ghost {
-    border: 1.5px solid rgba(255, 255, 255, 0.7);
-    color: #fff;
+    border: 1.5px solid rgba(244, 239, 230, 0.7);
+    color: var(--off-white);
 }
 
 .btn-ghost:hover {
-    background: #fff;
+    background: var(--surface);
     color: var(--petrol-dark);
 }
 
@@ -209,8 +214,8 @@ h1, h2, h3, .display {
 /* --- Karten -------------------------------------------------------------- */
 
 .card {
-    background: #fff;
-    border: 1px solid rgba(13, 105, 113, 0.1);
+    background: var(--surface);
+    border: 1px solid rgba(47, 98, 101, 0.1);
     border-radius: 1rem;
     transition: transform 0.25s ease, box-shadow 0.25s ease,
         border-color 0.25s ease;
@@ -218,8 +223,8 @@ h1, h2, h3, .display {
 
 .card:hover {
     transform: translateY(-4px);
-    border-color: rgba(13, 105, 113, 0.25);
-    box-shadow: 0 20px 40px -28px rgba(9, 74, 80, 0.6);
+    border-color: rgba(47, 98, 101, 0.25);
+    box-shadow: 0 20px 40px -28px rgba(33, 71, 74, 0.6);
 }
 
 .icon-badge {
@@ -313,15 +318,15 @@ h1, h2, h3, .display {
     width: 3rem;
     height: 3rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
+    background: rgba(244, 239, 230, 0.12);
+    color: var(--off-white);
     font-size: 1.5rem;
     line-height: 1;
     transition: background 0.2s ease;
 }
 
 .lightbox-btn:hover {
-    background: rgba(255, 255, 255, 0.28);
+    background: rgba(244, 239, 230, 0.28);
 }
 
 .lightbox-prev { left: clamp(0.75rem, 3vw, 2.5rem); }
@@ -333,7 +338,7 @@ h1, h2, h3, .display {
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(244, 239, 230, 0.75);
     font-size: 0.875rem;
     letter-spacing: 0.08em;
 }
@@ -356,15 +361,15 @@ h1, h2, h3, .display {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
-    border-bottom: 1px solid rgba(13, 105, 113, 0.15);
+    border-bottom: 1px solid rgba(47, 98, 101, 0.15);
 }
 
 .price-table tbody tr + tr td {
-    border-top: 1px solid rgba(13, 105, 113, 0.1);
+    border-top: 1px solid rgba(47, 98, 101, 0.1);
 }
 
 .price-table tbody tr:hover td {
-    background: var(--cream);
+    background: var(--band);
 }
 
 .price-table .price {
@@ -385,8 +390,8 @@ h1, h2, h3, .display {
     display: inline-flex;
     gap: 0.25rem;
     padding: 0.25rem;
-    background: var(--cream);
-    border: 1px solid rgba(13, 105, 113, 0.12);
+    background: var(--base);
+    border: 1px solid rgba(47, 98, 101, 0.14);
     border-radius: 999px;
 }
 
@@ -409,81 +414,8 @@ h1, h2, h3, .display {
 
 .guest-switch button.is-active {
     background: var(--petrol);
-    color: #fff;
+    color: var(--off-white);
 }
-
-/* --- Belegungskalender --------------------------------------------------- */
-
-.cal-month.is-hidden {
-    display: none;
-}
-
-.cal-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--petrol-dark);
-    text-align: center;
-    margin-bottom: 0.9rem;
-}
-
-.cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.25rem;
-}
-
-.cal-weekday {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    padding-bottom: 0.35rem;
-}
-
-.cal-day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1;
-    border-radius: 0.4rem;
-    font-size: 0.85rem;
-    font-variant-numeric: tabular-nums;
-}
-
-.cal-day.is-free {
-    background: var(--sand-light);
-    color: var(--petrol-dark);
-}
-
-.cal-day.is-booked {
-    background: var(--petrol);
-    color: #fff;
-    font-weight: 600;
-}
-
-.cal-day.is-past {
-    background: transparent;
-    color: rgba(92, 111, 114, 0.35);
-}
-
-.cal-legend {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--muted);
-}
-
-.cal-swatch {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 0.25rem;
-}
-
-.cal-swatch.is-free { background: var(--sand-light); }
-.cal-swatch.is-booked { background: var(--petrol); }
-.cal-swatch.is-past { background: rgba(92, 111, 114, 0.15); }
 
 /* --- Einblenden beim Scrollen -------------------------------------------- */
 

@@ -12,10 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        petrol: { DEFAULT: '#0d6971', dark: '#094a50', light: '#2a8f96' },
-                        sand: { DEFAULT: '#d9b88f', light: '#ede0cd' },
-                        cream: '#faf7f2',
-                        ink: '#1c2b2e'
+                        petrol: { DEFAULT: '#2f6265', dark: '#21474a', light: '#4e8386' },
+                        sand: { DEFAULT: '#c7a67b', light: '#d8cbb4' },
+                        base: '#e9e2d6',
+                        cream: '#ded5c5',
+                        surface: '#f2ece1',
+                        ink: '#2a3432',
+                        white: '#f4efe6',
+                        // waermere, entsaettigte Grautoene statt Tailwind-Slate
+                        slate: { 400: '#8a938d', 500: '#6d7a75', 600: '#54615c' }
                     },
                     maxWidth: { content: '76rem' }
                 }
@@ -55,7 +60,7 @@
         </button>
     </div>
 
-    <div id="mobileMenu" class="lg:hidden border-t border-petrol/10 bg-white">
+    <div id="mobileMenu" class="lg:hidden border-t border-petrol/10 bg-base">
         <div class="px-5 py-4 flex flex-col gap-1">
             <a href="#moin" class="nav-link py-2.5">Moin</a>
             <a href="#haus" class="nav-link py-2.5">Das Haus</a>
@@ -95,7 +100,7 @@
 
     <div class="absolute bottom-0 inset-x-0 z-10 leading-none">
         <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-            <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+            <path fill="#e9e2d6" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
         </svg>
     </div>
 </header>
@@ -158,7 +163,7 @@
 <!-- ====================== Das Haus ====================== -->
 <section id="haus" class="bg-cream">
     <svg class="wave wave-flip" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+        <path fill="#e9e2d6" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
     </svg>
 
     <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
@@ -527,7 +532,7 @@
 <!-- ====================== Preise ====================== -->
 <section id="preise" class="bg-cream">
     <svg class="wave wave-flip" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#ffffff" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
+        <path fill="#e9e2d6" d="M0,50 C240,90 420,10 720,40 C1020,70 1200,20 1440,55 L1440,90 L0,90 Z"/>
     </svg>
 
     <div class="max-w-content mx-auto px-5 lg:px-8 py-16 lg:py-24">
@@ -688,40 +693,8 @@
                     </p>
                 </div>
 
-                <a href="#verfuegbarkeit" class="btn btn-primary w-full mt-7">Belegung ansehen</a>
+                <a href="#kontakt" class="btn btn-primary w-full mt-7">Verfügbarkeit anfragen</a>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====================== Verfügbarkeit ====================== -->
-<section id="verfuegbarkeit" class="py-20 lg:py-28">
-    <div class="max-w-content mx-auto px-5 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto reveal">
-            <p class="eyebrow mb-4">Verfügbarkeit</p>
-            <h2 class="text-3xl lg:text-4xl font-bold text-petrol-dark">Wann ist noch frei?</h2>
-            <p class="mt-5 text-lg text-slate-600">
-                Der Kalender zeigt die bereits vergebenen Nächte. Wir halten ihn
-                laufend aktuell.
-            </p>
-
-            <div class="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                <span class="cal-legend"><i class="cal-swatch is-free"></i>frei</span>
-                <span class="cal-legend"><i class="cal-swatch is-booked"></i>belegt</span>
-                <span class="cal-legend"><i class="cal-swatch is-past"></i>vergangen</span>
-            </div>
-        </div>
-
-        <div id="calendarStatus" class="mt-12 text-center text-slate-500">Kalender wird geladen …</div>
-        <div id="calendar" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10"></div>
-
-        <div class="mt-10 text-center">
-            <button id="calendarToggle" class="btn btn-sand hidden">Weitere Monate anzeigen</button>
-            <p id="calendarUpdated" class="mt-6 text-sm text-slate-400"></p>
-            <p class="mt-2 text-sm text-slate-500">
-                Angaben ohne Gewähr – verbindlich wird ein Termin erst mit unserer Bestätigung.
-            </p>
-            <a href="#kontakt" class="btn btn-primary mt-6">Zeitraum anfragen</a>
         </div>
     </div>
 </section>
@@ -944,141 +917,6 @@
     });
 
     if (guestButtons.length) showPrices(4);
-
-    /* --- Belegungskalender --- */
-    const MONTHS_AHEAD = 12;
-    const MONTHS_COLLAPSED = 6;
-    const MONTH_NAMES = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-        'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-    const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-
-    const calendar = document.getElementById('calendar');
-    const calendarStatus = document.getElementById('calendarStatus');
-    const calendarToggle = document.getElementById('calendarToggle');
-    const calendarUpdated = document.getElementById('calendarUpdated');
-
-    const isoDate = date => date.toISOString().slice(0, 10);
-
-    /** Alle belegten Nächte als Menge. "to" ist der Abreisetag und bleibt frei. */
-    function bookedNights(ranges) {
-        const nights = new Set();
-        ranges.forEach(range => {
-            const cursor = new Date(range.from + 'T00:00:00Z');
-            const end = new Date(range.to + 'T00:00:00Z');
-            while (cursor < end) {
-                nights.add(isoDate(cursor));
-                cursor.setUTCDate(cursor.getUTCDate() + 1);
-            }
-        });
-        return nights;
-    }
-
-    function renderMonth(year, month, booked, today) {
-        const first = new Date(Date.UTC(year, month, 1));
-        const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
-        const leading = (first.getUTCDay() + 6) % 7; // Woche beginnt montags
-
-        const cells = WEEKDAYS
-            .map(day => `<span class="cal-weekday">${day}</span>`)
-            .concat(Array.from({ length: leading }, () => '<span></span>'));
-
-        for (let day = 1; day <= daysInMonth; day++) {
-            const iso = isoDate(new Date(Date.UTC(year, month, day)));
-            let state = 'is-free';
-            let label = 'frei';
-            if (iso < today) {
-                state = 'is-past';
-                label = 'vergangen';
-            } else if (booked.has(iso)) {
-                state = 'is-booked';
-                label = 'belegt';
-            }
-            cells.push(`<span class="cal-day ${state}" title="${iso} – ${label}">${day}</span>`);
-        }
-
-        return `<div class="cal-month">
-            <h3 class="cal-title">${MONTH_NAMES[month]} ${year}</h3>
-            <div class="cal-grid">${cells.join('')}</div>
-        </div>`;
-    }
-
-    async function buildCalendar() {
-        if (!calendar) return;
-
-        /** Beide Quellen lesen; eine fehlende Datei ist kein Fehler. */
-        async function load(path) {
-            const response = await fetch(path, { cache: 'no-cache' });
-            return response.ok ? response.json() : null;
-        }
-
-        let belegung = null;
-        let sperrzeiten = null;
-        try {
-            [belegung, sperrzeiten] = await Promise.all([
-                load('data/belegung.json').catch(() => null),
-                load('data/sperrzeiten.json').catch(() => null)
-            ]);
-        } catch (error) {
-            belegung = null;
-        }
-
-        if (!belegung && !sperrzeiten) {
-            calendarStatus.textContent =
-                'Der Belegungsplan lässt sich gerade nicht laden. Rufen Sie uns gern an.';
-            return;
-        }
-
-        const data = belegung || { updated: null, ranges: [] };
-        const ranges = [
-            ...(data.ranges || []),
-            ...(Array.isArray(sperrzeiten) ? sperrzeiten : [])
-        ].filter(range => range && range.from && range.to && range.to > range.from);
-
-        const booked = bookedNights(ranges);
-        const today = isoDate(new Date());
-        const start = new Date();
-        const months = [];
-
-        for (let i = 0; i < MONTHS_AHEAD; i++) {
-            const date = new Date(start.getFullYear(), start.getMonth() + i, 1);
-            months.push(renderMonth(date.getFullYear(), date.getMonth(), booked, today));
-        }
-
-        calendar.innerHTML = months.join('');
-        calendarStatus.remove();
-
-        const monthNodes = Array.from(calendar.children);
-        let expanded = false;
-
-        function applyCollapse() {
-            monthNodes.forEach((node, i) => {
-                node.classList.toggle('is-hidden', !expanded && i >= MONTHS_COLLAPSED);
-            });
-            calendarToggle.textContent = expanded
-                ? 'Weniger anzeigen'
-                : `Alle ${MONTHS_AHEAD} Monate anzeigen`;
-        }
-
-        if (monthNodes.length > MONTHS_COLLAPSED) {
-            calendarToggle.classList.remove('hidden');
-            applyCollapse();
-            calendarToggle.addEventListener('click', () => {
-                expanded = !expanded;
-                applyCollapse();
-                if (!expanded) {
-                    document.getElementById('verfuegbarkeit').scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        }
-
-        if (data.updated) {
-            calendarUpdated.textContent = 'Stand: ' + new Date(data.updated)
-                .toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric',
-                    hour: '2-digit', minute: '2-digit' }) + ' Uhr';
-        }
-    }
-
-    buildCalendar();
 
     /* --- Einblenden beim Scrollen --- */
     const observer = new IntersectionObserver((entries) => {
