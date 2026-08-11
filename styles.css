@@ -254,6 +254,24 @@ h1, h2, h3, .display {
     transform: scale(1.05);
 }
 
+/* --- Rundgang (Video) ----------------------------------------------------- */
+
+.video-frame {
+    margin: 3rem auto 0;
+    max-width: 38rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.55);
+}
+
+.video-frame video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* Aufnahme ist quadratisch, 1080 x 1080 */
+    background: #000;
+    object-fit: cover;
+}
+
 /* --- Galerie ------------------------------------------------------------- */
 
 .gallery-grid {
